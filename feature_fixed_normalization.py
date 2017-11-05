@@ -152,7 +152,7 @@ x2, y2 = time_transform(b, 80, 'esc_down')
 # x3, y3 = time_transform(c_norm, 40, 'ele_up')
 # x4, y4 = time_transform(d_norm, 40, 'ele_down')
 # x5, y5 = time_transform(e_norm, 40, 'same_floor')
-x6, y6 = time_transform(c, 80, 'subway')
+x6, y6 = time_transform(f, 80, 'subway')
 
 #合并并且打乱顺序
 # X = np.concatenate((x1,x2,x3,x4,x5,x6), axis = 0)
