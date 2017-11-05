@@ -9,6 +9,7 @@ from keras.layers import LSTM
 from sklearn import preprocessing
 from sklearn.utils import shuffle
 from keras.models import model_from_json
+from keras.layers import Dropout
 import os
 #import matplotlib.pyplot as plt
 #返回值是一个array,是(969,)的形式		
