@@ -83,11 +83,15 @@ def time_transform(merge, time_step, type):
 
 def create_model(x_train, y_train):
     model = Sequential()
-    model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = False))
+    #model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = False))
     #model.add(LSTM(100))
-    model.add(Dense(y_train.shape[1], activation='softmax'))
+    model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = True))
+    model.add(Dropout(0.2))
+    model.add(LSTM(100))
+    model.add(Dropout(0.2))
+	model.add(Dense(y_train.shape[1], activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(x_train, y_train, epochs=30, batch_size=50, validation_split = 0.2, verbose=2)
+    model.fit(x_train, y_train, epochs=100, batch_size=50, validation_split = 0.3, verbose=2)
     return model
 	
 #文件夹的形式是 模式类别

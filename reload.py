@@ -89,9 +89,9 @@ max_value = [20, 0.03, 200]
 # baro_test = read_file('escalator_down/test/baro', 'p')
 # mag_test = read_file('escalator_down/test/mag', 'm')
 
-acc_test = read_file('subway/test/acc', 'acc')
-baro_test = read_file('subway/test/baro', 'p')
-mag_test = read_file('subway/test/mag', 'm')
+acc_test = read_file('same_floor/test/acc', 'acc')
+baro_test = read_file('same_floor/test/baro', 'p')
+mag_test = read_file('same_floor/test/mag', 'm')
 
 # acc_test = read_file('escalator_up/test2/acc', 'acc')
 # baro_test = read_file('escalator_up/test2/baro', 'p')
