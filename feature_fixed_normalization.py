@@ -129,9 +129,12 @@ f = merge(acc_subway, baro_subway, mag_subway)
 # a_b_merge = np.concatenate((a,b,f), axis = 0)
 
 max_value = [20, 0.03, 200]
-# a = np.array(a)
-# b = np.array(b)
-# f = np.array(f)
+a = np.array(a)
+b = np.array(b)
+c = np.array(c)
+d = np.array(d)
+e = np.array(e)
+f = np.array(f)
 
 #以下部分用于对于全部的数据求出正确的均值和方差，用于测试组正规化数据
 a[:,0:1] = (a[:,0:1]-max_value[0])/max_value[0]
