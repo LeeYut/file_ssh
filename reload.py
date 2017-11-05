@@ -68,8 +68,7 @@ def merge(data1, data2, data3):
 # mean = [9.85218962, 0.000169008622, 79.5728539]
 # scale = [0.719079, 0.0049496, 84.9538016]
 
-mean = [9.85218962, 0.000169008622, 80]
-scale = [0.719079, 0.0049496, 84.9538016]
+max_value = [20, 0.03, 200]
 # acc_test = read_file('subway/acc', 'acc')
 # baro_test = read_file('subway/baro', 'p')
 # mag_test = read_file('subway/mag', 'm')
@@ -90,19 +89,19 @@ scale = [0.719079, 0.0049496, 84.9538016]
 # baro_test = read_file('escalator_down/test/baro', 'p')
 # mag_test = read_file('escalator_down/test/mag', 'm')
 
-# acc_test = read_file('subway/test/acc', 'acc')
-# baro_test = read_file('subway/test/baro', 'p')
-# mag_test = read_file('subway/test/mag', 'm')
+acc_test = read_file('subway/test/acc', 'acc')
+baro_test = read_file('subway/test/baro', 'p')
+mag_test = read_file('subway/test/mag', 'm')
 
-acc_test = read_file('escalator_up/test2/acc', 'acc')
-baro_test = read_file('escalator_up/test2/baro', 'p')
-mag_test = read_file('escalator_up/test2/mag', 'm')
+# acc_test = read_file('escalator_up/test2/acc', 'acc')
+# baro_test = read_file('escalator_up/test2/baro', 'p')
+# mag_test = read_file('escalator_up/test2/mag', 'm')
 
 test = np.array(merge(acc_test, baro_test, mag_test))
 print (test)
-test[:,0:1] = (test[:,0:1]-mean[0])/scale[0]
-test[:,1:2] = (test[:,1:2]-mean[1])/scale[1]
-test[:,2:3] = (test[:,2:3]-mean[2])/scale[2]
+test[:,0:1] = (test[:,0:1]-max_value[0])/max_value[0]
+test[:,1:2] = (test[:,1:2]-max_value[1])/max_value[1]
+test[:,2:3] = (test[:,2:3]-max_value[2])/max_value[2]
 x1, y1 = time_transform(test, 80, 'esc_up')
 
 # baro_esc_up = read_file('baro', 'p')
