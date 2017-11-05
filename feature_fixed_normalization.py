@@ -172,7 +172,7 @@ with open("model.json", "w") as json_file:
 # serialize weights to HDF5
 model.save_weights("model.h5")
 print("Saved model to disk")
-print ('mean')
-print (scaler.mean_)
-print ('scale')
-print (scaler.scale_)
+# print ('mean')
+# print (scaler.mean_)
+# print ('scale')
+# print (scaler.scale_)
