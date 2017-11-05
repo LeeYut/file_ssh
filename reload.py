@@ -9,6 +9,7 @@ from keras.layers import LSTM
 from sklearn import preprocessing
 from sklearn.utils import shuffle
 from keras.models import model_from_json
+from matplotlib import pyplot as plt
 import os
 
 def read_file(folder_name,tag):
@@ -24,7 +25,9 @@ def time_transform(merge, time_step, type):
     merge_array = np.array(merge)
     x, y = [],[]
     #convert merge_array to array with time_step
-    for i in range(len(merge) - time_step + 1):
+    # for i in range(len(merge) - time_step + 1):
+        # x.append(merge_array[i:i+time_step])
+    for i in range(int(len(merge)/time_step)):
         x.append(merge_array[i:i+time_step])
     if(type == 'esc_up'):
         y = np.array([1,0,0,0,0,0]*len(x))
@@ -62,7 +65,10 @@ def merge(data1, data2, data3):
 # mean=[9.88136310, -0.000163579366, 39.4779978]
 # scale = [ 0.71907 , 0.004949625, 84.9538]
 
-mean = [9.85218962, 0.000169008622, 79.5728539]
+# mean = [9.85218962, 0.000169008622, 79.5728539]
+# scale = [0.719079, 0.0049496, 84.9538016]
+
+mean = [9.85218962, 0.000169008622, 80]
 scale = [0.719079, 0.0049496, 84.9538016]
 # acc_test = read_file('subway/acc', 'acc')
 # baro_test = read_file('subway/baro', 'p')
@@ -80,17 +86,24 @@ scale = [0.719079, 0.0049496, 84.9538016]
 # baro_test = read_file('escalator_up/test2/baro', 'p')
 # mag_test = read_file('escalator_up/test2/mag', 'm')
 
+# acc_test = read_file('escalator_down/test/acc', 'acc')
+# baro_test = read_file('escalator_down/test/baro', 'p')
+# mag_test = read_file('escalator_down/test/mag', 'm')
 
-acc_test = read_file('subway/test/acc', 'acc')
-baro_test = read_file('subway/test/baro', 'p')
-mag_test = read_file('subway/test/mag', 'm')
+# acc_test = read_file('subway/test/acc', 'acc')
+# baro_test = read_file('subway/test/baro', 'p')
+# mag_test = read_file('subway/test/mag', 'm')
+
+acc_test = read_file('escalator_up/test2/acc', 'acc')
+baro_test = read_file('escalator_up/test2/baro', 'p')
+mag_test = read_file('escalator_up/test2/mag', 'm')
 
 test = np.array(merge(acc_test, baro_test, mag_test))
 print (test)
 test[:,0:1] = (test[:,0:1]-mean[0])/scale[0]
 test[:,1:2] = (test[:,1:2]-mean[1])/scale[1]
 test[:,2:3] = (test[:,2:3]-mean[2])/scale[2]
-x1, y1 = time_transform(test, 40, 'esc_up')
+x1, y1 = time_transform(test, 80, 'esc_up')
 
 # baro_esc_up = read_file('baro', 'p')
 # baro_esc_down = read_file('escalator_down/baro', 'p')
@@ -118,9 +131,12 @@ loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=
 score = loaded_model.predict(x1)
 print (np.argmax(score, axis = 1))
 a = np.argmax(score, axis = 1)
+plt.plot(a)
+plt.ylim(-1,6)
+plt.show()
 cnt = 0
 for i in a:
-    if(i == 5 ):
+    if(i == 0 ):
         cnt += 1
 print(cnt/len(a))
 print(score)
