@@ -44,16 +44,16 @@ def merge(data1, data2, data3):
     return merge
 
 	
-def merge(data1, data2):
-    merge = []
-    data1 = data1.reshape(1, len(data1))
-    data2 = data2.reshape(1, len(data2))
+# def merge(data1, data2):
+    # merge = []
+    # data1 = data1.reshape(1, len(data1))
+    # data2 = data2.reshape(1, len(data2))
 
-    #print (data1.shape)
-    z = zip(data1[0], data2[0])
-    for i in list(z):
-        merge.append(list(i))
-    return merge
+    print (data1.shape)
+    # z = zip(data1[0], data2[0])
+    # for i in list(z):
+        # merge.append(list(i))
+    # return merge
 	
 
 #这里将merge后的数据，整理成为带有time_step的数据
