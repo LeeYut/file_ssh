@@ -164,9 +164,9 @@ f[:,2:3] = (f[:,2:3]-max_value[2])/max_value[2]
 #对a b分别做含有time step的变换,输入的是有多个特征的情形
 x1, y1 = time_transform(a, 80, 'esc_up')
 x2, y2 = time_transform(b, 80, 'esc_down')
-x3, y3 = time_transform(c_norm, 80, 'ele_up')
-x4, y4 = time_transform(d_norm, 80, 'ele_down')
-x5, y5 = time_transform(e_norm, 80, 'same_floor')
+x3, y3 = time_transform(c, 80, 'ele_up')
+x4, y4 = time_transform(d, 80, 'ele_down')
+x5, y5 = time_transform(e, 80, 'same_floor')
 x6, y6 = time_transform(f, 80, 'subway')
 
 #合并并且打乱顺序
