@@ -129,6 +129,10 @@ f = merge(acc_subway, baro_subway, mag_subway)
 #a_b_merge = np.concatenate((a,b,f), axis = 0)
 
 max_value = [20, 0.03, 200]
+a = np.array(a)
+b = np.array(b)
+f = np.array(f)
+
 #以下部分用于对于全部的数据求出正确的均值和方差，用于测试组正规化数据
 a[:,0:1] = (a[:,0:1]-max_value[0])/max_value[0]
 a[:,1:2] = (a[:,1:2]-max_value[1])/max_value[1]
@@ -138,9 +142,9 @@ b[:,0:1] = (b[:,0:1]-max_value[0])/max_value[0]
 b[:,1:2] = (b[:,1:2]-max_value[1])/max_value[1]
 b[:,2:3] = (b[:,2:3]-max_value[2])/max_value[2]
 
-c[:,0:1] = (c[:,0:1]-max_value[0])/max_value[0]
-c[:,1:2] = (c[:,1:2]-max_value[1])/max_value[1]
-c[:,2:3] = (c[:,2:3]-max_value[2])/max_value[2]
+f[:,0:1] = (f[:,0:1]-max_value[0])/max_value[0]
+f[:,1:2] = (f[:,1:2]-max_value[1])/max_value[1]
+f[:,2:3] = (f[:,2:3]-max_value[2])/max_value[2]
 
 #对a b分别做含有time step的变换,输入的是有多个特征的情形
 x1, y1 = time_transform(a, 80, 'esc_up')
