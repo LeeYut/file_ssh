@@ -100,7 +100,7 @@ def create_model(x_train, y_train):
 baro_esc_up = read_file('escalator_up/baro', 'p')
 baro_esc_down = read_file('escalator_down/baro', 'p')
 # baro_same_floor = read_file('same_floor/baro', 'p')
-baro_subway = read_file('same_floor/baro', 'p')
+baro_subway = read_file('subway/baro', 'p')
 
 # acc_ele_up = read_file('elevator_up/acc', 'acc')
 # acc_ele_down = read_file('elevator_down/acc', 'acc')
