@@ -69,33 +69,39 @@ def merge(data1, data2, data3):
 # scale = [0.719079, 0.0049496, 84.9538016]
 
 max_value = [20, 0.03, 200]
-# acc_test = read_file('subway/acc', 'acc')
-# baro_test = read_file('subway/baro', 'p')
-# mag_test = read_file('subway/mag', 'm')
-# acc_test = read_file('escalator_up/acc', 'acc')
-# baro_test = read_file('escalator_up/baro', 'p')
-# mag_test = read_file('escalator_up/mag', 'm')
+
+acc_test = read_file('subway/acc', 'acc')
+baro_test = read_file('subway/baro', 'p')
+mag_test = read_file('subway/mag', 'm')
 
 
 # acc_test = read_file('same_floor/acc', 'acc')
 # baro_test = read_file('same_floor/baro', 'p')
 # mag_test = read_file('same_floor/mag', 'm')
 
-# acc_test = read_file('escalator_up/test2/acc', 'acc')
-# baro_test = read_file('escalator_up/test2/baro', 'p')
-# mag_test = read_file('escalator_up/test2/mag', 'm')
+# acc_test = read_file('elevator_up/test/acc', 'acc')
+# baro_test = read_file('elevator_up/test/baro', 'p')
+# mag_test = read_file('elevator_up/test/mag', 'm')
+
+# acc_test = read_file('elevator_down/test/acc', 'acc')
+# baro_test = read_file('elevator_down/test/baro', 'p')
+# mag_test = read_file('elevator_down/test/mag', 'm')
 
 # acc_test = read_file('escalator_down/test/acc', 'acc')
 # baro_test = read_file('escalator_down/test/baro', 'p')
 # mag_test = read_file('escalator_down/test/mag', 'm')
 
-acc_test = read_file('same_floor/test/acc', 'acc')
-baro_test = read_file('same_floor/test/baro', 'p')
-mag_test = read_file('same_floor/test/mag', 'm')
+# acc_test = read_file('same_floor/test/acc', 'acc')
+# baro_test = read_file('same_floor/test/baro', 'p')
+# mag_test = read_file('same_floor/test/mag', 'm')
 
-# acc_test = read_file('escalator_up/test2/acc', 'acc')
-# baro_test = read_file('escalator_up/test2/baro', 'p')
-# mag_test = read_file('escalator_up/test2/mag', 'm')
+acc_test = read_file('subway/add_test/acc', 'acc')
+baro_test = read_file('subway/add_test/baro', 'p')
+mag_test = read_file('subway/add_test/mag', 'm')
+
+# acc_test = read_file('escalator_up/test/acc', 'acc')
+# baro_test = read_file('escalator_up/test/baro', 'p')
+# mag_test = read_file('escalator_up/test/mag', 'm')
 
 test = np.array(merge(acc_test, baro_test, mag_test))
 print (test)
@@ -135,7 +141,7 @@ plt.ylim(-1,6)
 plt.show()
 cnt = 0
 for i in a:
-    if(i == 0 ):
+    if(i == 2 ):
         cnt += 1
 print(cnt/len(a))
 print(score)
