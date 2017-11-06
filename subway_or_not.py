@@ -77,15 +77,15 @@ def time_transform(merge, time_step, type):
 
 def create_model(x_train, y_train):
     model = Sequential()
-    model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = False))
+    #model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = False))
     #model.add(LSTM(100))
-    # model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = True))
-    # model.add(Dropout(0.2))
-    # model.add(LSTM(100))
-    # model.add(Dropout(0.2))
+    model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = True))
+    model.add(Dropout(0.2))
+    model.add(LSTM(100))
+    model.add(Dropout(0.2))
     model.add(Dense(y_train.shape[1], activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(x_train, y_train, epochs=30, batch_size=50, validation_split = 0.3, verbose=2)
+    model.fit(x_train, y_train, epochs=50, batch_size=100, validation_split = 0.3, verbose=2)
     return model
 	
 #文件夹的形式是 模式类别
@@ -180,10 +180,10 @@ X, Y = shuffle(X, Y)
 model = create_model(X, Y)
 #保存模型
 model_json = model.to_json()
-with open("model_binary.json", "w") as json_file:
+with open("model_binary_stack.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model_binary.h5")
+model.save_weights("model_binary_stack.h5")
 print("Saved model to disk")
 # print ('mean')
 # print (scaler.mean_)
