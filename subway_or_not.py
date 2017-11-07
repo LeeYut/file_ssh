@@ -180,10 +180,10 @@ X, Y = shuffle(X, Y)
 model = create_model(X, Y)
 #保存模型
 model_json = model.to_json()
-with open("model_binary_stack.json", "w") as json_file:
+with open("model_binary_stack_1107.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model_binary_stack.h5")
+model.save_weights("model_binary_stack_1107.h5")
 print("Saved model to disk")
 # print ('mean')
 # print (scaler.mean_)

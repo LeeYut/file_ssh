@@ -75,9 +75,6 @@ max_value = [20, 0.03, 200]
 # mag_test = read_file('subway/mag', 'm')
 
 
-# acc_test = read_file('same_floor/acc', 'acc')
-# baro_test = read_file('same_floor/baro', 'p')
-# mag_test = read_file('same_floor/mag', 'm')
 
 # acc_test = read_file('elevator_up/test/acc', 'acc')
 # baro_test = read_file('elevator_up/test/baro', 'p')
@@ -91,17 +88,27 @@ max_value = [20, 0.03, 200]
 # baro_test = read_file('escalator_down/test/baro', 'p')
 # mag_test = read_file('escalator_down/test/mag', 'm')
 
-acc_test = read_file('subway/test1/acc', 'acc')
-baro_test = read_file('subway/test1/baro', 'p')
-mag_test = read_file('subway/test1/mag', 'm')
+# acc_test = read_file('subway/test1/acc', 'acc')
+# baro_test = read_file('subway/test1/baro', 'p')
+# mag_test = read_file('subway/test1/mag', 'm')
 
-# acc_test = read_file('subway/add_test/acc', 'acc')
-# baro_test = read_file('subway/add_test/baro', 'p')
-# mag_test = read_file('subway/add_test/mag', 'm')
+acc_test = read_file('subway/test2_1106_data/acc', 'acc')
+baro_test = read_file('subway/test2_1106_data/baro', 'p')
+mag_test = read_file('subway/test2_1106_data/mag', 'm')
+
+
+# acc_test = read_file('not_subway/acc', 'acc')
+# baro_test = read_file('not_subway/baro', 'p')
+# mag_test = read_file('not_subway/mag', 'm')
 
 # acc_test = read_file('escalator_up/test/acc', 'acc')
 # baro_test = read_file('escalator_up/test/baro', 'p')
 # mag_test = read_file('escalator_up/test/mag', 'm')
+
+# acc_test = read_file('same_floor/test1/acc', 'acc')
+# baro_test = read_file('same_floor/test1/baro', 'p')
+# mag_test = read_file('same_floor/test1/mag', 'm')
+
 
 test = np.array(merge(acc_test, baro_test, mag_test))
 print (test)
