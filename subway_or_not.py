@@ -10,6 +10,7 @@ from sklearn import preprocessing
 from sklearn.utils import shuffle
 from keras.models import model_from_json
 from keras.layers import Dropout
+import matplotlib.pyplot as plt
 import os
 #import matplotlib.pyplot as plt
 #返回值是一个array,是(969,)的形式		
@@ -77,15 +78,15 @@ def time_transform(merge, time_step, type):
 
 def create_model(x_train, y_train):
     model = Sequential()
-    #model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = False))
-    #model.add(LSTM(100))
-    model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = True))
-    model.add(Dropout(0.2))
-    model.add(LSTM(100))
-    model.add(Dropout(0.2))
+    model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = False))
+    # model.add(LSTM(100))
+    # model.add(LSTM(100, input_shape=(x_train.shape[1], x_train.shape[2]), return_sequences = True))
+    # model.add(Dropout(0.2))
+    # model.add(LSTM(100))
+    # model.add(Dropout(0.2))
     model.add(Dense(y_train.shape[1], activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(x_train, y_train, epochs=50, batch_size=100, validation_split = 0.3, verbose=2)
+    model.fit(x_train, y_train, epochs=30, batch_size=100, validation_split = 0.3, verbose=2)
     return model
 	
 #文件夹的形式是 模式类别
@@ -134,10 +135,14 @@ d = np.array(d)
 e = np.array(e)
 f = np.array(f)
 
+
+
 #以下部分用于对于全部的数据求出正确的均值和方差，用于测试组正规化数据
 a[:,0:1] = (a[:,0:1]-max_value[0])/max_value[0]
 a[:,1:2] = (a[:,1:2]-max_value[1])/max_value[1]
 a[:,2:3] = (a[:,2:3]-max_value[2])/max_value[2]
+
+
 
 b[:,0:1] = (b[:,0:1]-max_value[0])/max_value[0]
 b[:,1:2] = (b[:,1:2]-max_value[1])/max_value[1]
@@ -159,6 +164,7 @@ f[:,0:1] = (f[:,0:1]-max_value[0])/max_value[0]
 f[:,1:2] = (f[:,1:2]-max_value[1])/max_value[1]
 f[:,2:3] = (f[:,2:3]-max_value[2])/max_value[2]
 
+
 #对a b分别做含有time step的变换,输入的是有多个特征的情形
 x1, y1 = time_transform(a, 80, 'esc_up')
 x2, y2 = time_transform(b, 80, 'esc_down')
@@ -170,20 +176,24 @@ x6, y6 = time_transform(f, 80, 'subway')
 #合并并且打乱顺序
 X = np.concatenate((x1,x2,x3,x4,x5,x6), axis = 0)
 Y = np.concatenate((y1, y2,y3,y4,y5,y6), axis = 0)
-
+# plt.subplot(2,1,1)
+# plt.plot(X)
+# plt.subplot(2,1,2)
+# plt.plot(np.argmax(Y,axis = 1))
 # X = np.concatenate((x1,x2,x6), axis = 0)
 # Y = np.concatenate((y1, y2,y6), axis = 0)
 X, Y = shuffle(X, Y)
-
+print (X.shape)
+print (Y[:50])
 
 #数据已经准备完成，可以送去训练模型了
 model = create_model(X, Y)
 #保存模型
 model_json = model.to_json()
-with open("model_binary_stack_1107.json", "w") as json_file:
+with open("model_binary_1108.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model_binary_stack_1107.h5")
+model.save_weights("model_binary_1108.h5")
 print("Saved model to disk")
 # print ('mean')
 # print (scaler.mean_)

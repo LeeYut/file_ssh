@@ -70,9 +70,9 @@ def merge(data1, data2, data3):
 
 max_value = [20, 0.03, 200]
 
-# acc_test = read_file('subway/acc', 'acc')
-# baro_test = read_file('subway/baro', 'p')
-# mag_test = read_file('subway/mag', 'm')
+acc_test = read_file('not_subway/test1/acc', 'acc')
+baro_test = read_file('not_subway/test1/baro', 'p')
+mag_test = read_file('not_subway/test1/mag', 'm')
 
 
 
@@ -91,10 +91,6 @@ max_value = [20, 0.03, 200]
 # acc_test = read_file('subway/test1/acc', 'acc')
 # baro_test = read_file('subway/test1/baro', 'p')
 # mag_test = read_file('subway/test1/mag', 'm')
-
-acc_test = read_file('subway/test2_1106_data/acc', 'acc')
-baro_test = read_file('subway/test2_1106_data/baro', 'p')
-mag_test = read_file('subway/test2_1106_data/mag', 'm')
 
 
 # acc_test = read_file('not_subway/acc', 'acc')
@@ -130,12 +126,12 @@ x1, y1 = time_transform(test, 80, 'esc_up')
 # Y = np.concatenate((y1, y2,y3,y4,y5), axis = 0)
 # X = x1
 
-json_file = open('model_binary.json', 'r')
+json_file = open('model_binary_stack.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 #load weights into new model
-loaded_model.load_weights("model_binary.h5")
+loaded_model.load_weights("model_binary_stack.h5")
 print("Loaded model from disk")
  
 #evaluate loaded model on test data
