@@ -51,7 +51,7 @@ def merge(data1, data2, data3):
     # data1 = data1.reshape(1, len(data1))
     # data2 = data2.reshape(1, len(data2))
 
-    print (data1.shape)
+    #print (data1.shape)
     # z = zip(data1[0], data2[0])
     # for i in list(z):
         # merge.append(list(i))
@@ -86,7 +86,7 @@ def create_model(x_train, y_train):
     # model.add(Dropout(0.2))
     model.add(Dense(y_train.shape[1], activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(x_train, y_train, epochs=30, batch_size=100, validation_split = 0.3, verbose=2)
+    model.fit(x_train, y_train, epochs=30, batch_size=20, validation_split = 0.3, verbose=2)
     return model
 	
 #文件夹的形式是 模式类别
@@ -123,7 +123,7 @@ d = merge(acc_ele_down,baro_ele_down,mag_ele_down)
 e= merge(acc_same_floor,baro_same_floor,mag_same_floor)
 f = merge(acc_subway, baro_subway, mag_subway)
 
-#concave】tenate真的很棒，普通的list也可以被串起来
+#concavetenate真的很棒，普通的list也可以被串起来
 # a_b_merge = np.concatenate((a,b,c,d,e,f), axis = 0)
 # a_b_merge = np.concatenate((a,b,f), axis = 0)
 
@@ -183,8 +183,7 @@ Y = np.concatenate((y1, y2,y3,y4,y5,y6), axis = 0)
 # X = np.concatenate((x1,x2,x6), axis = 0)
 # Y = np.concatenate((y1, y2,y6), axis = 0)
 X, Y = shuffle(X, Y)
-print (X.shape)
-print (Y[:50])
+
 
 #数据已经准备完成，可以送去训练模型了
 model = create_model(X, Y)
