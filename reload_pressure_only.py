@@ -28,7 +28,7 @@ def time_transform(merge, time_step, type):
     # for i in range(len(merge) - time_step + 1):
         # x.append(merge_array[i:i+time_step])
     for i in range(int(len(merge)/time_step)):
-        x.append(merge_array[i:i+time_step])
+        x.append(merge_array[i*time_step:i*time_step+time_step])
     if(type == 'esc_up'):
         y = np.array([1,0,0,0,0,0]*len(x))
     elif(type == 'esc_down'):
@@ -66,7 +66,7 @@ def merge(data1, data2, data3):
 mean_scale = [-0.00017236, 0.00764564]
 
 
-test = read_file('elevator_up/baro', 'p').reshape(-1,1)
+test = read_file('same_floor/test/baro', 'p').reshape(-1,1)
 
 print (test)
 test[:,0:1] = (test[:,0:1]-mean_scale[0])/mean_scale[1]
@@ -74,12 +74,12 @@ test[:,0:1] = (test[:,0:1]-mean_scale[0])/mean_scale[1]
 x1, y1 = time_transform(test, 80, 'esc_up')
 
 
-json_file = open('model_binary_stack.json', 'r')
+json_file = open('model_pressure_only.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 #load weights into new model
-loaded_model.load_weights("model_binary_stack.h5")
+loaded_model.load_weights("model_pressure_only.h5")
 print("Loaded model from disk")
  
 #evaluate loaded model on test data
