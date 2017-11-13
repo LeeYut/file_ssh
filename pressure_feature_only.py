@@ -121,10 +121,10 @@ X, Y = shuffle(X, Y)
 model = create_model(X, Y)
 #保存模型
 model_json = model.to_json()
-with open("model_pressure_only.json", "w") as json_file:
+with open("model_pressure_only_without3.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model_pressure_only.h5")
+model.save_weights("model_pressure_only_without3.h5")
 print("Saved model to disk")
 print ('mean')
 print (scaler.mean_)
